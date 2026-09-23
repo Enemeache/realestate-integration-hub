@@ -1,0 +1,98 @@
+[
+  {
+    "id": "p1",
+    "title": "Casa 4 ambientes en Barrio Los Castores",
+    "description": "Casa moderna de 4 ambientes con pileta, quincho y parque de 800m2. Ideal familia grande, cerca del colegio St. Andrew's. Nordelta.",
+    "neighborhood": "Los Castores, Nordelta",
+    "price_usd": 420000,
+    "bedrooms": 4
+  },
+  {
+    "id": "p2",
+    "title": "Departamento 2 ambientes a estrenar",
+    "description": "Monoambiente de lujo con amenities, gimnasio y coworking. Perfecto para joven profesional o inversión. A estrenar, entrega inmediata.",
+    "neighborhood": "Puertos, Escobar",
+    "price_usd": 135000,
+    "bedrooms": 1
+  },
+  {
+    "id": "p3",
+    "title": "Casa de campo estilo minimalista",
+    "description": "Casa de diseño minimalista con muelle propio sobre laguna, ideal para deportes náuticos y descanso. 3 dormitorios en suite.",
+    "neighborhood": "Barrancas del Lago, Nordelta",
+    "price_usd": 650000,
+    "bedrooms": 3
+  },
+  {
+    "id": "p4",
+    "title": "Departamento 3 ambientes con vista al golf",
+    "description": "Piso alto con vista panorámica a la cancha de golf. Balcón terraza, cochera doble. Excelente para familia tipo con hijos chicos.",
+    "neighborhood": "Golf, Nordelta",
+    "price_usd": 280000,
+    "bedrooms": 2
+  },
+  {
+    "id": "p5",
+    "title": "PH reciclado a nuevo cerca del centro comercial",
+    "description": "PH totalmente reciclado, luminoso, patio propio. A pasos del paseo de compras y el hospital. Sin expensas.",
+    "neighborhood": "Al Sur, Nordelta",
+    "price_usd": 195000,
+    "bedrooms": 2
+  },
+  {
+    "id": "p6",
+    "title": "Casa familiar con quincho y pileta climatizada",
+    "description": "5 ambientes, jardín amplio, quincho cerrado, pileta climatizada. Zona muy segura con guardia 24hs, ideal para chicos.",
+    "neighborhood": "Punta Cañas, Nordelta",
+    "price_usd": 550000,
+    "bedrooms": 5
+  },
+  {
+    "id": "p7",
+    "title": "Departamento económico 1 dormitorio",
+    "description": "Unidad funcional de 1 dormitorio, buen precio de entrada, ideal primera inversión o alquiler. Cochera opcional.",
+    "neighborhood": "Los Lagos, Nordelta",
+    "price_usd": 98000,
+    "bedrooms": 1
+  },
+  {
+    "id": "p8",
+    "title": "Casa premium frente al lago",
+    "description": "Diseño de autor frente al lago central, doble altura, muelle privado y home theater. Terminaciones de máxima categoría.",
+    "neighborhood": "Islas del Golf, Nordelta",
+    "price_usd": 890000,
+    "bedrooms": 4
+  },
+  {
+    "id": "p9",
+    "title": "Departamento 2 ambientes pet friendly",
+    "description": "Departamento moderno, pet friendly, con parque canino en el complejo. Amenities completos y seguridad perimetral.",
+    "neighborhood": "Sausalito, Nordelta",
+    "price_usd": 150000,
+    "bedrooms": 1
+  },
+  {
+    "id": "p10",
+    "title": "Casa a estrenar lista para mudarse",
+    "description": "Casa a estrenar, 3 dormitorios, cocina integrada, jardín con pileta. Financiación disponible en pesos.",
+    "neighborhood": "La Alameda, Nordelta",
+    "price_usd": 310000,
+    "bedrooms": 3
+  },
+  {
+    "id": "p11",
+    "title": "Lote de terreno para construir",
+    "description": "Lote de 600m2 en zona en desarrollo, apto para construir casa de hasta 3 pisos. Buena oportunidad de inversión a mediano plazo.",
+    "neighborhood": "Puertos, Escobar",
+    "price_usd": 85000,
+    "bedrooms": 0
+  },
+  {
+    "id": "p12",
+    "title": "Departamento de lujo con servicio de conserjería",
+    "description": "3 ambientes de categoría con conserjería 24hs, spa y piscina climatizada en el edificio. Vista al río.",
+    "neighborhood": "Yacht, Nordelta",
+    "price_usd": 340000,
+    "bedrooms": 2
+  }
+]
