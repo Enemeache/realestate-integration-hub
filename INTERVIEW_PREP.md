@@ -74,6 +74,22 @@ test fallaba con `AttributeError: no attribute '_matrix'`. Es un buen
 ejemplo de "el traceback te dice dónde se rompe, no por qué" — hay que
 entender cómo funciona el decorador, no solo parchear el síntoma.
 
+**"¿Cómo protegerías este webhook de que le manden datos truchos?"**
+Con firma HMAC-SHA256 (`app/security.py`): si configurás `WEBHOOK_SECRET`,
+el endpoint exige un header `X-Signature` con el hash del body crudo firmado
+con ese secreto compartido — mismo patrón que usan Stripe y los portales
+reales. Sin la variable, el endpoint no exige firma (modo dev), así que el
+mismo código sirve para desarrollo y producción sin ifs desperdigados.
+
+**"¿Realmente armaste la alternativa con Kafka o es un mock?"**
+Es real: `app/queue_kafka.py` implementa el mismo contrato
+(`publish_lead`/`consume_leads`) que la versión RabbitMQ, con
+`kafka-python`, y `app/queue.py` elige cuál cargar según `MESSAGE_BROKER`.
+Se prueba con `docker compose --profile kafka up` usando Redpanda (Kafka-
+compatible, un solo contenedor, sin Zookeeper). Los tests unitarios
+(`tests/test_queue_kafka.py`) mockean `KafkaProducer`/`KafkaConsumer`, igual
+criterio que con RabbitMQ: no dependen de un broker real corriendo.
+
 ## 3. Puntos débiles reales — decí la verdad, no los escondas
 
 - No tenés experiencia productiva con Kafka, MuleSoft/Zapier/Make (sí n8n,

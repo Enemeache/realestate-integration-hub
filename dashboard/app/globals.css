@@ -1,0 +1,257 @@
+:root {
+  --bg: #fbfbfa;
+  --panel: #ffffff;
+  --fg: #191c21;
+  --muted: #5f6771;
+  --line: #dfe3e8;
+  --accent: #12507e;
+  --ok: #166a45;
+  --warn: #8a5a00;
+  --bad: #a32118;
+  --ok-bg: #e8f4ee;
+  --warn-bg: #fdf3e0;
+  --bad-bg: #fbeceb;
+  --accent-bg: #e9f0f6;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14171b;
+    --panel: #1a1e23;
+    --fg: #e8eaed;
+    --muted: #9aa3ae;
+    --line: #2c323a;
+    --accent: #7fb2dd;
+    --ok: #6fcf9a;
+    --warn: #e3b45f;
+    --bad: #f0897f;
+    --ok-bg: #16291f;
+    --warn-bg: #2a2214;
+    --bad-bg: #2c1a18;
+    --accent-bg: #172431;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.wrap {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 4rem;
+}
+
+header {
+  border-bottom: 2px solid var(--fg);
+  padding-bottom: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+h1 {
+  font-size: 1.35rem;
+  margin: 0 0 0.3rem;
+  letter-spacing: -0.01em;
+}
+
+.sub {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+h2 {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--muted);
+  margin: 0 0 0.7rem;
+  font-weight: 600;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 720px) {
+  .grid2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+label.f {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin: 0.6rem 0 0.2rem;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.42rem 0.5rem;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--panel);
+  color: var(--fg);
+  font-size: 0.88rem;
+  font-family: inherit;
+}
+
+textarea {
+  height: 80px;
+  resize: vertical;
+}
+
+button {
+  padding: 0.55rem 1rem;
+  border: 1px solid var(--fg);
+  border-radius: 3px;
+  background: var(--fg);
+  color: var(--bg);
+  font-size: 0.92rem;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.88;
+}
+
+button.ghost {
+  background: transparent;
+  color: var(--fg);
+  border-color: var(--line);
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.row {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+th {
+  text-align: left;
+  padding: 0.45rem 0.5rem;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.73rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+td {
+  padding: 0.5rem 0.5rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+.scroll {
+  overflow-x: auto;
+}
+
+.empty {
+  padding: 1.6rem 1rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.err {
+  background: var(--bad-bg);
+  border: 1px solid var(--bad);
+  color: var(--bad);
+  padding: 0.6rem 0.75rem;
+  border-radius: 3px;
+  font-size: 0.87rem;
+  margin-bottom: 1rem;
+}
+
+.ok-note {
+  background: var(--ok-bg);
+  border: 1px solid var(--ok);
+  color: var(--ok);
+  padding: 0.5rem 0.7rem;
+  border-radius: 3px;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.statuspill {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.15rem 0.55rem;
+  border-radius: 99px;
+}
+
+.statuspill.hot {
+  background: var(--bad-bg);
+  color: var(--bad);
+}
+
+.statuspill.warm {
+  background: var(--warn-bg);
+  color: var(--warn);
+}
+
+.statuspill.cold {
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+.matchlist {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+footer {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+footer a {
+  color: var(--accent);
+}
