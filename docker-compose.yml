@@ -12,6 +12,22 @@ services:
       - "5672:5672"
       - "15672:15672"  # management UI: http://localhost:15672 (guest/guest)
 
+  # Alternativa a RabbitMQ, compatible con el protocolo Kafka pero en un solo
+  # contenedor (sin Zookeeper). Se levanta con: docker compose --profile kafka up
+  redpanda:
+    image: redpandadata/redpanda:v24.2.4
+    profiles: ["kafka"]
+    command:
+      - redpanda
+      - start
+      - --smp=1
+      - --overprovisioned
+      - --node-id=0
+      - --kafka-addr=PLAINTEXT://0.0.0.0:9092
+      - --advertise-kafka-addr=PLAINTEXT://redpanda:9092
+    ports:
+      - "9092:9092"
+
   api:
     build: .
     ports:

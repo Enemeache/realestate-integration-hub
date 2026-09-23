@@ -9,6 +9,9 @@ class Settings(BaseSettings):
     anthropic_api_key: str | None = None
     embedding_engine: str = "tfidf"  # "tfidf" (default, scikit-learn) or "sentence-transformers"
     log_level: str = "INFO"
+    webhook_secret: str | None = None  # si se configura, /webhook/lead exige firma HMAC valida
+    message_broker: str = "rabbitmq"  # "rabbitmq" o "kafka" (ver app/broker.py)
+    kafka_bootstrap_servers: str = "localhost:9092"
 
     class Config:
         env_file = ".env"

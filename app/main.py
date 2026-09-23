@@ -1,15 +1,17 @@
 import logging
 from typing import Callable, Optional
 
-from fastapi import Depends, FastAPI, HTTPException, status
+from fastapi import Depends, FastAPI, Header, HTTPException, Request, status
 from strawberry.fastapi import GraphQLRouter
 
+from app.config import settings
 from app.db import get_db
 from app.graphql_schema import schema
 from app.logging_conf import configure_logging
 from app.models import Lead, LeadIn, LeadStatus
 from app.queue import publish_lead
 from app.repository import get_lead, list_leads, new_lead_id
+from app.security import verify_signature
 
 configure_logging()
 logger = logging.getLogger(__name__)
@@ -37,8 +39,24 @@ async def health() -> dict:
 
 
 @app.post("/webhook/lead", status_code=status.HTTP_202_ACCEPTED, tags=["leads"])
-async def receive_lead(lead_in: LeadIn, publisher: Callable[[dict], None] = Depends(get_queue_publisher)):
-    """Recibe un lead de un portal/formulario externo y lo encola para procesamiento asíncrono."""
+async def receive_lead(
+    request: Request,
+    lead_in: LeadIn,
+    x_signature: Optional[str] = Header(default=None, alias="X-Signature"),
+    publisher: Callable[[dict], None] = Depends(get_queue_publisher),
+):
+    """Recibe un lead de un portal/formulario externo y lo encola para procesamiento asíncrono.
+
+    Si `WEBHOOK_SECRET` está configurado, exige el header `X-Signature` con el
+    HMAC-SHA256 (hex) del body crudo firmado con ese secreto — mismo patrón que
+    usan los portales reales (y Stripe) para que solo el emisor legítimo pueda
+    publicar leads.
+    """
+    if settings.webhook_secret:
+        raw_body = await request.body()
+        if not verify_signature(settings.webhook_secret, raw_body, x_signature):
+            raise HTTPException(status_code=401, detail="Firma invalida o ausente")
+
     lead_id = new_lead_id()
     payload = {"id": lead_id, **lead_in.model_dump()}
     try:
