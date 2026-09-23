@@ -84,11 +84,22 @@ mismo código sirve para desarrollo y producción sin ifs desperdigados.
 **"¿Realmente armaste la alternativa con Kafka o es un mock?"**
 Es real: `app/queue_kafka.py` implementa el mismo contrato
 (`publish_lead`/`consume_leads`) que la versión RabbitMQ, con
-`kafka-python`, y `app/queue.py` elige cuál cargar según `MESSAGE_BROKER`.
+`kafka-python-ng`, y `app/queue.py` elige cuál cargar según `MESSAGE_BROKER`.
 Se prueba con `docker compose --profile kafka up` usando Redpanda (Kafka-
 compatible, un solo contenedor, sin Zookeeper). Los tests unitarios
 (`tests/test_queue_kafka.py`) mockean `KafkaProducer`/`KafkaConsumer`, igual
 criterio que con RabbitMQ: no dependen de un broker real corriendo.
+
+De hecho esto me dio otro bug real para contar: el CI falló al agregar
+Kafka aunque en mi máquina (Python 3.11) todos los tests pasaban. El runner
+de GitHub Actions usa Python 3.12, y ahí `kafka-python` (el paquete
+original, sin mantenimiento hace años) rompe el import
+(`ModuleNotFoundError: kafka.vendor.six.moves`) — un bug de compatibilidad
+específico de esa versión. Instalé Python 3.12 localmente para reproducir
+el mismo error antes de tocar nada, y lo resolví migrando a
+`kafka-python-ng`, el fork de la comunidad que sí se mantiene. Buen ejemplo
+de "funciona en mi máquina" y por qué el CI tiene que fallar rápido cuando
+el runtime de destino no es el que usás para desarrollar.
 
 ## 3. Puntos débiles reales — decí la verdad, no los escondas
 

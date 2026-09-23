@@ -1,4 +1,5 @@
-"""Publisher/consumer sobre Kafka (kafka-python).
+"""Publisher/consumer sobre Kafka (kafka-python-ng, fork mantenido de kafka-python
+-- el original está sin actualizar hace años y no importa en Python 3.10+).
 
 Mismo contrato que app/queue_rabbitmq.py (publish_lead/consume_leads),
 elegible con la env var MESSAGE_BROKER=kafka. Sirve para mostrar que el

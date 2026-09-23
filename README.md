@@ -134,7 +134,7 @@ elige la implementación según `MESSAGE_BROKER`:
 
 - `rabbitmq` (default, `app/queue_rabbitmq.py`): resuelve bien "cola de
   tareas" — un mensaje, un consumidor, reintentos con ack/nack.
-- `kafka` (`app/queue_kafka.py`, kafka-python): tiene sentido cuando varios
+- `kafka` (`app/queue_kafka.py`, kafka-python-ng): tiene sentido cuando varios
   consumidores independientes necesitan leer el mismo stream de eventos.
 
 Para levantar la variante Kafka (usa [Redpanda](https://redpanda.com), un
